@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		91A35A7529B82B1C00F79CD3 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 91A35A7429B82B1C00F79CD3 /* main.c */; };
+		91A35A7D29B82B2F00F79CD3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A35A7C29B82B2F00F79CD3 /* OpenGL.framework */; };
+		91A35A7F29B82B3F00F79CD3 /* libGLEW.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A35A7E29B82B3F00F79CD3 /* libGLEW.2.2.0.dylib */; };
+		91A35A8129B82B4B00F79CD3 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A35A8029B82B4B00F79CD3 /* libglfw.3.3.dylib */; };
+		91A35A8629B82BBF00F79CD3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A35A8529B82BBF00F79CD3 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +27,10 @@
 
 /* Begin PBXFileReference section */
 		91A35A7129B82B1C00F79CD3 /* doom-renderengine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "doom-renderengine"; sourceTree = BUILT_PRODUCTS_DIR; };
-		91A35A7429B82B1C00F79CD3 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		91A35A7C29B82B2F00F79CD3 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		91A35A7E29B82B3F00F79CD3 /* libGLEW.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.2.0.dylib; path = ../../../../../../opt/homebrew/Cellar/glew/2.2.0_1/lib/libGLEW.2.2.0.dylib; sourceTree = "<group>"; };
+		91A35A8029B82B4B00F79CD3 /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = ../../../../../../opt/homebrew/Cellar/glfw/3.3.8/lib/libglfw.3.3.dylib; sourceTree = "<group>"; };
+		91A35A8529B82BBF00F79CD3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +38,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91A35A8129B82B4B00F79CD3 /* libglfw.3.3.dylib in Frameworks */,
+				91A35A7F29B82B3F00F79CD3 /* libGLEW.2.2.0.dylib in Frameworks */,
+				91A35A7D29B82B2F00F79CD3 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +52,7 @@
 			children = (
 				91A35A7329B82B1C00F79CD3 /* doom-renderengine */,
 				91A35A7229B82B1C00F79CD3 /* Products */,
+				91A35A7B29B82B2F00F79CD3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,9 +67,19 @@
 		91A35A7329B82B1C00F79CD3 /* doom-renderengine */ = {
 			isa = PBXGroup;
 			children = (
-				91A35A7429B82B1C00F79CD3 /* main.c */,
+				91A35A8529B82BBF00F79CD3 /* main.cpp */,
 			);
 			path = "doom-renderengine";
+			sourceTree = "<group>";
+		};
+		91A35A7B29B82B2F00F79CD3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				91A35A8029B82B4B00F79CD3 /* libglfw.3.3.dylib */,
+				91A35A7E29B82B3F00F79CD3 /* libGLEW.2.2.0.dylib */,
+				91A35A7C29B82B2F00F79CD3 /* OpenGL.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,7 +139,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91A35A7529B82B1C00F79CD3 /* main.c in Sources */,
+				91A35A8629B82BBF00F79CD3 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +259,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9324ZFUN65;
+				HEADER_SEARCH_PATHS = /opt/homebrew/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/homebrew/Cellar/glew/2.2.0_1/lib,
+					/opt/homebrew/Cellar/glfw/3.3.8/lib,
+				);
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.renderengine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -247,6 +275,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = /opt/homebrew/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/homebrew/Cellar/glew/2.2.0_1/lib,
+					/opt/homebrew/Cellar/glfw/3.3.8/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

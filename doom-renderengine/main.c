@@ -6,6 +6,9 @@
 //
 
 #include <stdio.h>
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+#define GL_SILENCE_DEPRECATION
 
 int main(int argc, const char * argv[]) {
     // insert code here...

@@ -11,6 +11,8 @@
 		91A35A7F29B82B3F00F79CD3 /* libGLEW.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A35A7E29B82B3F00F79CD3 /* libGLEW.2.2.0.dylib */; };
 		91A35A8129B82B4B00F79CD3 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A35A8029B82B4B00F79CD3 /* libglfw.3.3.dylib */; };
 		91A35A8629B82BBF00F79CD3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A35A8529B82BBF00F79CD3 /* main.cpp */; };
+		91A35A8B29B83B9600F79CD3 /* render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A35A8A29B83B9600F79CD3 /* render.cpp */; };
+		91A35A8D29B83C3000F79CD3 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A35A8C29B83C3000F79CD3 /* player.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +33,8 @@
 		91A35A7E29B82B3F00F79CD3 /* libGLEW.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.2.0.dylib; path = ../../../../../../opt/homebrew/Cellar/glew/2.2.0_1/lib/libGLEW.2.2.0.dylib; sourceTree = "<group>"; };
 		91A35A8029B82B4B00F79CD3 /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = ../../../../../../opt/homebrew/Cellar/glfw/3.3.8/lib/libglfw.3.3.dylib; sourceTree = "<group>"; };
 		91A35A8529B82BBF00F79CD3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		91A35A8A29B83B9600F79CD3 /* render.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = render.cpp; sourceTree = "<group>"; };
+		91A35A8C29B83C3000F79CD3 /* player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,8 @@
 			isa = PBXGroup;
 			children = (
 				91A35A8529B82BBF00F79CD3 /* main.cpp */,
+				91A35A8A29B83B9600F79CD3 /* render.cpp */,
+				91A35A8C29B83C3000F79CD3 /* player.cpp */,
 			);
 			path = "doom-renderengine";
 			sourceTree = "<group>";
@@ -140,6 +146,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				91A35A8629B82BBF00F79CD3 /* main.cpp in Sources */,
+				91A35A8B29B83B9600F79CD3 /* render.cpp in Sources */,
+				91A35A8D29B83C3000F79CD3 /* player.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

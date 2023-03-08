@@ -11,8 +11,9 @@
 		91A35A7F29B82B3F00F79CD3 /* libGLEW.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A35A7E29B82B3F00F79CD3 /* libGLEW.2.2.0.dylib */; };
 		91A35A8129B82B4B00F79CD3 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A35A8029B82B4B00F79CD3 /* libglfw.3.3.dylib */; };
 		91A35A8629B82BBF00F79CD3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A35A8529B82BBF00F79CD3 /* main.cpp */; };
-		91A35A8B29B83B9600F79CD3 /* render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A35A8A29B83B9600F79CD3 /* render.cpp */; };
-		91A35A8D29B83C3000F79CD3 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A35A8C29B83C3000F79CD3 /* player.cpp */; };
+		91A35A9029B8CA2F00F79CD3 /* render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A35A8E29B8CA2F00F79CD3 /* render.cpp */; };
+		91A35A9329B8CBAD00F79CD3 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A35A9129B8CBAD00F79CD3 /* player.cpp */; };
+		91A35A9529B900B400F79CD3 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A35A9429B900B400F79CD3 /* GLUT.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,8 +34,11 @@
 		91A35A7E29B82B3F00F79CD3 /* libGLEW.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.2.0.dylib; path = ../../../../../../opt/homebrew/Cellar/glew/2.2.0_1/lib/libGLEW.2.2.0.dylib; sourceTree = "<group>"; };
 		91A35A8029B82B4B00F79CD3 /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = ../../../../../../opt/homebrew/Cellar/glfw/3.3.8/lib/libglfw.3.3.dylib; sourceTree = "<group>"; };
 		91A35A8529B82BBF00F79CD3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		91A35A8A29B83B9600F79CD3 /* render.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = render.cpp; sourceTree = "<group>"; };
-		91A35A8C29B83C3000F79CD3 /* player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
+		91A35A8E29B8CA2F00F79CD3 /* render.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = render.cpp; sourceTree = "<group>"; };
+		91A35A8F29B8CA2F00F79CD3 /* render.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = render.hpp; sourceTree = "<group>"; };
+		91A35A9129B8CBAD00F79CD3 /* player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
+		91A35A9229B8CBAD00F79CD3 /* player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = player.hpp; sourceTree = "<group>"; };
+		91A35A9429B900B400F79CD3 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91A35A9529B900B400F79CD3 /* GLUT.framework in Frameworks */,
 				91A35A8129B82B4B00F79CD3 /* libglfw.3.3.dylib in Frameworks */,
 				91A35A7F29B82B3F00F79CD3 /* libGLEW.2.2.0.dylib in Frameworks */,
 				91A35A7D29B82B2F00F79CD3 /* OpenGL.framework in Frameworks */,
@@ -72,8 +77,10 @@
 			isa = PBXGroup;
 			children = (
 				91A35A8529B82BBF00F79CD3 /* main.cpp */,
-				91A35A8A29B83B9600F79CD3 /* render.cpp */,
-				91A35A8C29B83C3000F79CD3 /* player.cpp */,
+				91A35A8E29B8CA2F00F79CD3 /* render.cpp */,
+				91A35A8F29B8CA2F00F79CD3 /* render.hpp */,
+				91A35A9129B8CBAD00F79CD3 /* player.cpp */,
+				91A35A9229B8CBAD00F79CD3 /* player.hpp */,
 			);
 			path = "doom-renderengine";
 			sourceTree = "<group>";
@@ -81,6 +88,7 @@
 		91A35A7B29B82B2F00F79CD3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				91A35A9429B900B400F79CD3 /* GLUT.framework */,
 				91A35A8029B82B4B00F79CD3 /* libglfw.3.3.dylib */,
 				91A35A7E29B82B3F00F79CD3 /* libGLEW.2.2.0.dylib */,
 				91A35A7C29B82B2F00F79CD3 /* OpenGL.framework */,
@@ -145,9 +153,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91A35A9329B8CBAD00F79CD3 /* player.cpp in Sources */,
 				91A35A8629B82BBF00F79CD3 /* main.cpp in Sources */,
-				91A35A8B29B83B9600F79CD3 /* render.cpp in Sources */,
-				91A35A8D29B83C3000F79CD3 /* player.cpp in Sources */,
+				91A35A9029B8CA2F00F79CD3 /* render.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

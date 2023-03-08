@@ -4,20 +4,12 @@
 //
 //  Created by Juan Pablo Gutierrez on 07/03/23.
 //
-#include "render.hpp"
-#include "player.hpp"
 
 #include <stdio.h>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <math.h>
 #include <GLUT/GLUT.h>
-
-typedef struct{
-    int fr1, fr2;
-}xtime; xtime T;
-
-int tick;
 
 //Handles pixel drawing according to the color
 void pixel(int x, int y, int c){
@@ -51,31 +43,10 @@ void clearBackground(){
     }
 }
 
-void draw3D(){
-    int x, y, c = 0;
-    for (y = 0; y < sHeight2; y++) {
-        for (x = 0; x < sHeight2; x++) {
-            pixel(x, y, c);
-            c += 1;
-            if(c > 8) {c = 0;}
-        }
-    }
-    
-    //Manages frame rate
-    tick += 1; if(tick > 20 ) {tick = 0;}
-    pixel(sWidth2, sHeight2, 0);
-}
-
 void display(){
     int x, y;
     if(T.fr1 - T.fr2 >= 50){
-        movePlayer();
-        draw3D();
+        clearBackground();
         
-        T.fr2 = T.fr1;
-                
     }
-    T.fr1 = glutGet(GLUT_ELAPSED_TIME);
-    
-    glutPostRedisplay();
 }

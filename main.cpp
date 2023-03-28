@@ -8,6 +8,9 @@
 #include <iostream>
 #include <SDL.h>
 
+#include "player.hpp"
+#include "render.hpp"
+
 int main()
 {
     int resW = 1280;
@@ -72,7 +75,7 @@ int main()
     while (appIsRunning)
     {
         //slowing things down a little, you can delete this if you like
-        while (SDL_GetTicks64() - lastDrawTime < numMillisToThrottle){}
+        /* while (SDL_GetTicks64() - lastDrawTime < numMillisToThrottle){}
 
         SDL_Event event;
         while (SDL_PollEvent(&event))
@@ -82,47 +85,16 @@ int main()
             {
                 appIsRunning = false;
             }
-            else if (event.type == SDL_KEYDOWN)
-            {
-                if (event.key.keysym.scancode == SDL_SCANCODE_UP)
-                {
-                upArrowDown = true;
-                }
-                else if (event.key.keysym.scancode == SDL_SCANCODE_LEFT)
-                {
-                leftArrowDown = true;
-                }
-                else if (event.key.keysym.scancode == SDL_SCANCODE_DOWN)
-                {
-                downArrowDown = true;
-                }
-                else if (event.key.keysym.scancode == SDL_SCANCODE_RIGHT)
-                {
-                rightArrowDown = true;
-                }
+            else {
+                handleKeysDown(event);
+                handleKeysUp(event);
             }
-            else if (event.type == SDL_KEYUP)
-            {
-                if (event.key.keysym.scancode == SDL_SCANCODE_UP)
-                {
-                upArrowDown = false;
-                }
-                else if (event.key.keysym.scancode == SDL_SCANCODE_LEFT)
-                {
-                leftArrowDown = false;
-                }
-                else if (event.key.keysym.scancode == SDL_SCANCODE_DOWN)
-                {
-                downArrowDown = false;
-                }
-                else if (event.key.keysym.scancode == SDL_SCANCODE_RIGHT)
-                {
-                rightArrowDown = false;
-                }
-            }
+            
         }
 
-        //move rectangle
+        movePlayer(sdlRect, numPixelsToMovePerFrame); */
+
+/*         //move rectangle
         if (upArrowDown)
         {
             sdlRect.y -= numPixelsToMovePerFrame;
@@ -138,10 +110,10 @@ int main()
         if (rightArrowDown)
         {
             sdlRect.x += numPixelsToMovePerFrame;
-        }
+        } */
 
         //bounds checking and correction
-        if (sdlRect.x < 0)
+        /* if (sdlRect.x < 0)
         {
             sdlRect.x = 0;
         }
@@ -156,14 +128,24 @@ int main()
         else if (sdlRect.y + sdlRect.h - 1 >= resH)
         {
             sdlRect.y = resH - sdlRect.h;
-        }
-
+        } */
+/* 
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
         SDL_RenderClear(renderer);
 
         SDL_SetRenderDrawColor(renderer, 255, 105, 180, SDL_ALPHA_OPAQUE);
         SDL_RenderFillRect(renderer, &sdlRect);
-        SDL_RenderPresent(renderer);
+        SDL_RenderPresent(renderer); */
+        
+        for (int i = 0; i < resW; i++)
+        {
+            for (size_t j = 0; j < resH; j++)
+            {
+                drawPixel(i, j, 255, &renderer);
+            }
+            
+        }
+        
         
         lastDrawTime = SDL_GetTicks64();
     }

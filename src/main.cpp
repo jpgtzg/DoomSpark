@@ -3,10 +3,11 @@
  * @file main.cpp
  * @author Juan Pablo Gutiérez
  * @date 07/03/23.
-*/
+ */
 
 #include <iostream>
 #include <SDL2/SDL.h>
+#include <math.h>
 
 #include "player.hpp"
 
@@ -14,20 +15,38 @@ using namespace std;
 
 #define resW 1280
 #define resH 720
+#define PI 3.14159265
+
+/* Remove, raycast engine */
+float playerX = 0;
+float playerY = 0;
+float playerDX = 0;
+float playerDY = 0;
+
+int mapX = 8, mapY = 8, mapSize = 64;
+
+void drawMap(SDL_Renderer *renderer);
+
+/**
+ * @brief Map of the game, 1 is a wall color red, 2 is a wall color green, 0 is empty space
+ */
+int map[] = {
+    1, 1, 1, 1, 1, 1, 1, 1,
+    1, 0, 0, 0, 0, 0, 0, 1,
+    1, 0, 1, 0, 0, 2, 0, 1,
+    1, 0, 0, 0, 0, 0, 0, 1,
+    1, 0, 0, 0, 2, 0, 0, 1,
+    1, 0, 2, 0, 0, 2, 0, 1,
+    1, 0, 0, 0, 0, 0, 0, 1,
+    1, 1, 1, 1, 1, 1, 1, 1};
 
 int main()
 {
-    SDL_Rect sdlRect;
-    sdlRect.w = resW / 30;
-    sdlRect.h = resH / 10;
-    sdlRect.x = resW / 2 - sdlRect.w / 2;
-    sdlRect.y = resH / 2 - sdlRect.h / 2;
-    int numPixelsToMovePerFrame = sdlRect.w / 4;
-
-    bool upArrowDown = false;
-    bool leftArrowDown = false;
-    bool downArrowDown = false;
-    bool rightArrowDown = false;
+    SDL_Rect playerSDLRect;
+    playerSDLRect.w = 10;
+    playerSDLRect.h = 10;
+    playerSDLRect.x = resW / 2 - playerSDLRect.w / 2;
+    playerSDLRect.y = resH / 2 - playerSDLRect.h / 2;
 
     SDL_Window *window = nullptr;
     SDL_Renderer *renderer = nullptr;
@@ -47,7 +66,7 @@ int main()
 
     // Create an application window with the following settings:
     window = SDL_CreateWindow(
-        "An SDL2 window",        // window title
+        "3D Game Engine",        // window title
         SDL_WINDOWPOS_UNDEFINED, // initial x position
         SDL_WINDOWPOS_UNDEFINED, // initial y position
         resW,                    // width, in pixels
@@ -92,15 +111,29 @@ int main()
             lastDrawTime = SDL_GetTicks64();
         }
 
-        movePlayer(sdlRect, numPixelsToMovePerFrame);
+        /* Calculates the position of the player, handling inputs*/
+        movePlayer(playerSDLRect, playerX, playerY);
 
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
         SDL_RenderClear(renderer);
 
-        SDL_SetRenderDrawColor(renderer, 255, 105, 180, SDL_ALPHA_OPAQUE);
-        SDL_RenderFillRect(renderer, &sdlRect);
+        /* Draws the player*/
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
+        SDL_RenderFillRect(renderer, &playerSDLRect);
+        /* SDL_RenderDrawPoint(renderer, playerX, playerY); */
+
+        /* DL_SetRenderDrawColor(renderer, 100, 100, 0, SDL_ALPHA_OPAQUE);
+        SDL_RenderDrawPoint(renderer, 100, 100);
+        */
+
+        drawMap(renderer);
+
+        /* SDL_SetRenderDrawColor(renderer, 100, 105, 180, SDL_ALPHA_OPAQUE); */
+        /* SDL_RenderDrawPoint(renderer, playerX, playerY); */
+        /* SDL_RenderDrawPoint(renderer, 400, resH / 2); */
+        /* SDL_RenderFillRect(renderer, &sdlRect); */
         SDL_RenderPresent(renderer);
-        
+
         lastDrawTime = SDL_GetTicks64();
     }
 
@@ -109,4 +142,36 @@ int main()
     std::cout << "exiting..." << std::endl;
     SDL_Quit();
     return 0;
+}
+
+void drawMap(SDL_Renderer *renderer)
+{
+    SDL_Rect blockReck;
+
+    for (int y = 0; y < mapY; y++)
+    {
+        for (int x = 0; x < mapX; x++)
+        {
+            /* Runs through the array, the multiplication has to be done as it is a one dimensional array*/
+            /* All multiplications are done because of the offset */
+            int mapIndex = y * mapX + x;
+            int mapValue = map[mapIndex];
+
+            blockReck.x = x * mapSize;
+            blockReck.y = y * mapSize;
+            blockReck.w = mapSize;
+            blockReck.h = mapSize;
+
+            if (mapValue == 1)
+            {
+                SDL_SetRenderDrawColor(renderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
+                SDL_RenderFillRect(renderer, &blockReck);
+            }
+            else if (mapValue == 2)
+            {
+                SDL_SetRenderDrawColor(renderer, 0, 255, 0, SDL_ALPHA_OPAQUE);
+                SDL_RenderFillRect(renderer, &blockReck);
+            }
+        }
+    }
 }

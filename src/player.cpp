@@ -10,6 +10,7 @@
 
 #define pixelsPerFrame 3
 #define rotationPerFrame 0.1
+#define PI 3.14159265
 
 typedef struct
 {
@@ -20,37 +21,9 @@ keys K;
 using namespace std;
 
 /**
- * Moves a SDL_Rect object in the direction of the key pressed.
- */
-void movePlayer(SDL_Rect &sdlRect)
-{
-
-    if (K.w == true)
-    {
-        cout << "up" << endl;
-        sdlRect.y -= pixelsPerFrame;
-    }
-    if (K.a == true)
-    {
-        cout << "left" << endl;
-        sdlRect.x -= pixelsPerFrame;
-    }
-    if (K.s == true)
-    {
-        cout << "down" << endl;
-        sdlRect.y += pixelsPerFrame;
-    }
-    if (K.d == true)
-    {
-        cout << "right" << endl;
-        sdlRect.x += pixelsPerFrame;
-    }
-}
-
-/**
  * Moves the player, given their current positions
  */
-void movePlayer(float &x, float &y)
+void movePlayer(float &x, float &y, float &dx, float &dy, float &angle)
 {
     if (K.w == true)
     {
@@ -60,6 +33,7 @@ void movePlayer(float &x, float &y)
     if (K.a == true)
     {
         cout << "left" << endl;
+        dx -= rotationPerFrame;
         x -= pixelsPerFrame;
     }
     if (K.s == true)
@@ -77,32 +51,43 @@ void movePlayer(float &x, float &y)
 /**
  * Moves the SDL_Rect and updates its positions
  */
-void movePlayer(SDL_Rect &sdlRect, float &x, float &y)
+void movePlayer(SDL_Rect &sdlRect, float &x, float &y, float &dx, float &dy, float &angle)
 {
     if (K.w == true)
     {
         cout << "up" << endl;
-        sdlRect.y -= pixelsPerFrame;
-        y -= pixelsPerFrame;
+
+        x += dx;
+        y += dy;
     }
     if (K.a == true)
     {
         cout << "left" << endl;
-        sdlRect.x -= pixelsPerFrame;
-        x -= pixelsPerFrame;
+        angle -= rotationPerFrame;
+        if (angle < 0)
+            angle += 2 * PI;
+        dx = cos(angle) * 10;
+        dy = sin(angle) * 10;
     }
     if (K.s == true)
     {
         cout << "down" << endl;
-        sdlRect.y += pixelsPerFrame;
-        y += pixelsPerFrame;
+
+        x -= dx;
+        y -= dy;
     }
     if (K.d == true)
     {
         cout << "right" << endl;
-        sdlRect.x += pixelsPerFrame;
-        x += pixelsPerFrame;
+        angle += rotationPerFrame;
+        if (angle > 2 * PI)
+            angle -= 2 * PI;
+        dx = cos(angle) * 10;
+        dy = sin(angle) * 10;
     }
+
+    sdlRect.x = x;
+    sdlRect.y = y;
 }
 
 void handleKeysDown(SDL_Event event)

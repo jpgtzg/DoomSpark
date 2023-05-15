@@ -12,9 +12,9 @@
 
 void movePlayer(SDL_Rect &sdlRect);
 
-void movePlayer(float &x, float &y);
+void movePlayer(float &x, float &y, float &dx, float &dy, float &angle);
 
-void movePlayer(SDL_Rect &sdlRect, float &x, float &y);
+void movePlayer(SDL_Rect &sdlRect, float &x, float &y, float &dx, float &dy, float &angle);
 
 void handleKeysDown(SDL_Event event);
 

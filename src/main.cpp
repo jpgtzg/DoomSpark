@@ -15,13 +15,13 @@ using namespace std;
 
 #define resW 1280
 #define resH 720
-#define PI 3.14159265
 
 /* Remove, raycast engine */
-float playerX = 0;
-float playerY = 0;
+float playerX = 5;
+float playerY = 5;
 float playerDX = 0;
 float playerDY = 0;
+float playerA = 0;
 
 int mapX = 8, mapY = 8, mapSize = 64;
 
@@ -45,8 +45,8 @@ int main()
     SDL_Rect playerSDLRect;
     playerSDLRect.w = 10;
     playerSDLRect.h = 10;
-    playerSDLRect.x = resW / 2 - playerSDLRect.w / 2;
-    playerSDLRect.y = resH / 2 - playerSDLRect.h / 2;
+    playerSDLRect.x = playerX;// resW / 2 - playerSDLRect.w / 2;
+    playerSDLRect.y = playerY;// resH / 2 - playerSDLRect.h / 2;
 
     SDL_Window *window = nullptr;
     SDL_Renderer *renderer = nullptr;
@@ -112,7 +112,7 @@ int main()
         }
 
         /* Calculates the position of the player, handling inputs*/
-        movePlayer(playerSDLRect, playerX, playerY);
+        movePlayer(playerSDLRect, playerX, playerY, playerDX, playerDY, playerA);
 
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
         SDL_RenderClear(renderer);
@@ -120,14 +120,16 @@ int main()
         /* Draws the player*/
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
         SDL_RenderFillRect(renderer, &playerSDLRect);
-        /* SDL_RenderDrawPoint(renderer, playerX, playerY); */
+
+        SDL_SetRenderDrawColor(renderer, 100, 100, 0, SDL_ALPHA_OPAQUE);
+        SDL_RenderDrawLine(renderer, playerX, playerY, playerX + playerDX * 10, playerY + playerDY * 10);
 
         /* DL_SetRenderDrawColor(renderer, 100, 100, 0, SDL_ALPHA_OPAQUE);
         SDL_RenderDrawPoint(renderer, 100, 100);
         */
 
-        drawMap(renderer);
-
+/*         drawMap(renderer);
+ */
         /* SDL_SetRenderDrawColor(renderer, 100, 105, 180, SDL_ALPHA_OPAQUE); */
         /* SDL_RenderDrawPoint(renderer, playerX, playerY); */
         /* SDL_RenderDrawPoint(renderer, 400, resH / 2); */

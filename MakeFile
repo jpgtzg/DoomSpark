@@ -1,0 +1,13 @@
+clean: app
+	rm -rf app
+
+all: app
+
+app: src/main.cpp player.o
+	g++ src/main.cpp player.o -o app -I include -L lib -l SDL2-2.0.0
+
+player.o: src/player.cpp
+	g++ -c src/player.cpp -o player.o -I include 
+
+clean:
+	rm -rf *.o

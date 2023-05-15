@@ -11,3 +11,7 @@ Thanks
 # Compiling
 
 I've written a small bash script that handles compiling and running, just run run.sh 
+
+# Authors
+
+* **Juan Pablo Gutiérrez** - [AndromedaHelix](https://github.com/AndromedaHelix)

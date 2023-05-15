@@ -8,6 +8,9 @@
 #include <iostream>
 #include <stdio.h>
 
+#define pixelsPerFrame 3
+#define rotationPerFrame 0.1
+
 typedef struct
 {
     bool w, a, s, d;
@@ -16,28 +19,90 @@ keys K;
 
 using namespace std;
 
-void movePlayer(SDL_Rect &sdlRect, int pixelsAdded)
+/**
+ * Moves a SDL_Rect object in the direction of the key pressed.
+ */
+void movePlayer(SDL_Rect &sdlRect)
 {
 
     if (K.w == true)
     {
         cout << "up" << endl;
-        sdlRect.y -= 10;
+        sdlRect.y -= pixelsPerFrame;
     }
     if (K.a == true)
     {
         cout << "left" << endl;
-        sdlRect.x -= 10;
+        sdlRect.x -= pixelsPerFrame;
     }
     if (K.s == true)
     {
         cout << "down" << endl;
-        sdlRect.y += 10;
+        sdlRect.y += pixelsPerFrame;
     }
     if (K.d == true)
     {
         cout << "right" << endl;
-        sdlRect.x += 10;
+        sdlRect.x += pixelsPerFrame;
+    }
+}
+
+/**
+ * Moves the player, given their current positions
+ */
+void movePlayer(float &x, float &y, float &dx, float &dy)
+{
+    if (K.w == true)
+    {
+        cout << "up" << endl;
+        y -= pixelsPerFrame;
+    }
+    if (K.a == true)
+    {
+        cout << "left" << endl;
+        x -= pixelsPerFrame;
+    }
+    if (K.s == true)
+    {
+        cout << "down" << endl;
+        y += pixelsPerFrame;
+    }
+    if (K.d == true)
+    {
+        cout << "right" << endl;
+        x += pixelsPerFrame;
+    }
+}
+
+/**
+ * Moves the SDL_Rect and updates its positions
+ */
+void movePlayer(SDL_Rect &sdlRect, float &x, float &y, float &dx, float &dy)
+{
+    if (K.w == true)
+    {
+        cout << "up" << endl;
+        sdlRect.y -= pixelsPerFrame;
+        y -= pixelsPerFrame;
+    }
+    if (K.a == true)
+    {
+        cout << "left" << endl;
+        sdlRect.x -= pixelsPerFrame;
+        dx -= 0.1;
+        x -= pixelsPerFrame;
+    }
+    if (K.s == true)
+    {
+        cout << "down" << endl;
+        sdlRect.y += pixelsPerFrame;
+        y += pixelsPerFrame;
+    }
+    if (K.d == true)
+    {
+        cout << "right" << endl;
+        sdlRect.x += pixelsPerFrame;
+        x += pixelsPerFrame;
     }
 }
 

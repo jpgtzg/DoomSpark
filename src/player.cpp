@@ -50,7 +50,7 @@ void movePlayer(SDL_Rect &sdlRect)
 /**
  * Moves the player, given their current positions
  */
-void movePlayer(float &x, float &y, float &dx, float &dy)
+void movePlayer(float &x, float &y)
 {
     if (K.w == true)
     {
@@ -77,7 +77,7 @@ void movePlayer(float &x, float &y, float &dx, float &dy)
 /**
  * Moves the SDL_Rect and updates its positions
  */
-void movePlayer(SDL_Rect &sdlRect, float &x, float &y, float &dx, float &dy)
+void movePlayer(SDL_Rect &sdlRect, float &x, float &y)
 {
     if (K.w == true)
     {
@@ -89,7 +89,6 @@ void movePlayer(SDL_Rect &sdlRect, float &x, float &y, float &dx, float &dy)
     {
         cout << "left" << endl;
         sdlRect.x -= pixelsPerFrame;
-        dx -= 0.1;
         x -= pixelsPerFrame;
     }
     if (K.s == true)

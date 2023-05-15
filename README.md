@@ -1,4 +1,4 @@
-# Doom-renderengine
+# DoomSpark
 
 Doom-like simple rendering engine written in C++ using OpenGL
 

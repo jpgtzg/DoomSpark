@@ -66,8 +66,8 @@ void movePlayer(SDL_Rect &sdlRect, float &x, float &y, float &dx, float &dy, flo
         angle -= rotationPerFrame;
         if (angle < 0)
             angle += 2 * PI;
-        dx = cos(angle) * 10;
-        dy = sin(angle) * 10;
+        dx = cos(angle) * 5;
+        dy = sin(angle) * 5;
     }
     if (K.s == true)
     {
@@ -82,8 +82,8 @@ void movePlayer(SDL_Rect &sdlRect, float &x, float &y, float &dx, float &dy, flo
         angle += rotationPerFrame;
         if (angle > 2 * PI)
             angle -= 2 * PI;
-        dx = cos(angle) * 10;
-        dy = sin(angle) * 10;
+        dx = cos(angle) * 5;
+        dy = sin(angle) * 5;
     }
 
     sdlRect.x = x;

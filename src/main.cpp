@@ -45,8 +45,8 @@ int main()
     SDL_Rect playerSDLRect;
     playerSDLRect.w = 10;
     playerSDLRect.h = 10;
-    playerSDLRect.x = playerX;// resW / 2 - playerSDLRect.w / 2;
-    playerSDLRect.y = playerY;// resH / 2 - playerSDLRect.h / 2;
+    playerSDLRect.x = playerX;
+    playerSDLRect.y = playerY;
 
     SDL_Window *window = nullptr;
     SDL_Renderer *renderer = nullptr;
@@ -121,19 +121,12 @@ int main()
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
         SDL_RenderFillRect(renderer, &playerSDLRect);
 
+        /* Draws the ray */
         SDL_SetRenderDrawColor(renderer, 100, 100, 0, SDL_ALPHA_OPAQUE);
         SDL_RenderDrawLine(renderer, playerX, playerY, playerX + playerDX * 10, playerY + playerDY * 10);
 
-        /* DL_SetRenderDrawColor(renderer, 100, 100, 0, SDL_ALPHA_OPAQUE);
-        SDL_RenderDrawPoint(renderer, 100, 100);
-        */
+        drawMap(renderer);
 
-/*         drawMap(renderer);
- */
-        /* SDL_SetRenderDrawColor(renderer, 100, 105, 180, SDL_ALPHA_OPAQUE); */
-        /* SDL_RenderDrawPoint(renderer, playerX, playerY); */
-        /* SDL_RenderDrawPoint(renderer, 400, resH / 2); */
-        /* SDL_RenderFillRect(renderer, &sdlRect); */
         SDL_RenderPresent(renderer);
 
         lastDrawTime = SDL_GetTicks64();
@@ -176,4 +169,8 @@ void drawMap(SDL_Renderer *renderer)
             }
         }
     }
+}
+
+void doRaycast(){
+    
 }

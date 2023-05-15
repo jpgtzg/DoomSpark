@@ -1,27 +1,28 @@
-//
-//  main.cpp
-//  doom-renderengine
-//
-//  Created by Juan Pablo Gutierrez on 07/03/23.
-//
+/**
+ * doom-renderengine
+ * @file main.cpp
+ * @author Juan Pablo Gutiérez
+ * @date 07/03/23.
+*/
 
 #include <iostream>
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #include "player.hpp"
-#include "render.hpp"
+
+using namespace std;
+
+#define resW 1280
+#define resH 720
 
 int main()
 {
-    int resW = 1280;
-    int resH = 720;
-
     SDL_Rect sdlRect;
-    sdlRect.w = resW/30;
-    sdlRect.h = resH/10;
-    sdlRect.x = resW/2 - sdlRect.w/2;
-    sdlRect.y = resH/2 - sdlRect.h/2;
-    int numPixelsToMovePerFrame = sdlRect.w/4;
+    sdlRect.w = resW / 30;
+    sdlRect.h = resH / 10;
+    sdlRect.x = resW / 2 - sdlRect.w / 2;
+    sdlRect.y = resH / 2 - sdlRect.h / 2;
+    int numPixelsToMovePerFrame = sdlRect.w / 4;
 
     bool upArrowDown = false;
     bool leftArrowDown = false;
@@ -31,7 +32,7 @@ int main()
     SDL_Window *window = nullptr;
     SDL_Renderer *renderer = nullptr;
     bool appIsRunning = true;
-    
+
     int numMillisToThrottle = 6;
     Uint64 lastDrawTime = SDL_GetTicks64();
 
@@ -49,8 +50,8 @@ int main()
         "An SDL2 window",        // window title
         SDL_WINDOWPOS_UNDEFINED, // initial x position
         SDL_WINDOWPOS_UNDEFINED, // initial y position
-        resW,                     // width, in pixels
-        resH,                     // height, in pixels
+        resW,                    // width, in pixels
+        resH,                    // height, in pixels
         SDL_WINDOW_SHOWN         // flags - see below
     );
 
@@ -71,12 +72,9 @@ int main()
         return 1;
     }
 
-    //main game/app loop
+    // main game/app loop
     while (appIsRunning)
     {
-        //slowing things down a little, you can delete this if you like
-        /* while (SDL_GetTicks64() - lastDrawTime < numMillisToThrottle){}
-
         SDL_Event event;
         while (SDL_PollEvent(&event))
         {
@@ -85,67 +83,23 @@ int main()
             {
                 appIsRunning = false;
             }
-            else {
+            else
+            {
                 handleKeysDown(event);
                 handleKeysUp(event);
             }
-            
+
+            lastDrawTime = SDL_GetTicks64();
         }
 
-        movePlayer(sdlRect, numPixelsToMovePerFrame); */
+        movePlayer(sdlRect, numPixelsToMovePerFrame);
 
-/*         //move rectangle
-        if (upArrowDown)
-        {
-            sdlRect.y -= numPixelsToMovePerFrame;
-        }
-        if (leftArrowDown)
-        {
-            sdlRect.x -= numPixelsToMovePerFrame;
-        }
-        if (downArrowDown)
-        {
-            sdlRect.y += numPixelsToMovePerFrame;
-        }
-        if (rightArrowDown)
-        {
-            sdlRect.x += numPixelsToMovePerFrame;
-        } */
-
-        //bounds checking and correction
-        /* if (sdlRect.x < 0)
-        {
-            sdlRect.x = 0;
-        }
-        else if (sdlRect.x + sdlRect.w - 1 >= resW)
-        {
-            sdlRect.x = resW - sdlRect.w;
-        }
-        if (sdlRect.y < 0)
-        {
-            sdlRect.y = 0;
-        }
-        else if (sdlRect.y + sdlRect.h - 1 >= resH)
-        {
-            sdlRect.y = resH - sdlRect.h;
-        } */
-/* 
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
         SDL_RenderClear(renderer);
 
         SDL_SetRenderDrawColor(renderer, 255, 105, 180, SDL_ALPHA_OPAQUE);
         SDL_RenderFillRect(renderer, &sdlRect);
-        SDL_RenderPresent(renderer); */
-        
-        for (int i = 0; i < resW; i++)
-        {
-            for (size_t j = 0; j < resH; j++)
-            {
-                drawPixel(i, j, 255, &renderer);
-            }
-            
-        }
-        
+        SDL_RenderPresent(renderer);
         
         lastDrawTime = SDL_GetTicks64();
     }

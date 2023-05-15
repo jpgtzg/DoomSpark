@@ -1,10 +1,8 @@
-//
-//  player.cpp
-//  doom-renderengine
-//
-//  Created by Juan Pablo Gutierrez on 12/03/23.
-//
-
+/**
+ * @file player.cpp
+ * @author Juan Pablo Gutiérez
+ * @date  12/03/23.
+ */
 #include "player.hpp"
 
 #include <iostream>
@@ -17,23 +15,19 @@ typedef struct
 keys K;
 
 using namespace std;
-    
-void movePlayer(SDL_Rect& sdlRect, int pixelsAdded)
+
+void movePlayer(SDL_Rect &sdlRect, int pixelsAdded)
 {
-    cout << pixelsAdded << endl;
 
     if (K.w == true)
     {
         cout << "up" << endl;
-
         sdlRect.y -= 10;
-        cout << sdlRect.y << endl;
     }
     if (K.a == true)
     {
         cout << "left" << endl;
         sdlRect.x -= 10;
-        cout << sdlRect.x << endl;
     }
     if (K.s == true)
     {

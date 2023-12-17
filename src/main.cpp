@@ -10,6 +10,7 @@
 #include <math.h>
 
 #include "player.hpp"
+#include "render.hpp"
 
 using namespace std;
 
@@ -64,7 +65,7 @@ int main()
         std::cout << "SDL video system is ready to go\n";
     }
 
-    // Create an application window with the following settings:
+    // Create application window:
     window = SDL_CreateWindow(
         "3D Game Engine",        // window title
         SDL_WINDOWPOS_UNDEFINED, // initial x position
@@ -91,7 +92,7 @@ int main()
         return 1;
     }
 
-    // main game/app loop
+    // Game loop
     while (appIsRunning)
     {
         SDL_Event event;
@@ -141,7 +142,7 @@ int main()
 
 void drawMap(SDL_Renderer *renderer)
 {
-    SDL_Rect blockReck;
+    SDL_Rect blockReck; /* A single pixel */
 
     for (int y = 0; y < mapY; y++)
     {
